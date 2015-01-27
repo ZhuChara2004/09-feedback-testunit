@@ -14,6 +14,12 @@ gem 'less-rails'
 gem 'bower-rails', '~> 0.9.2'
 gem 'twitter-bootstrap-rails'
 
+gem 'mongoid', '~> 4.0.0'
+gem 'bson_ext'
+
+gem 'simple_form'
+gem 'devise'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
