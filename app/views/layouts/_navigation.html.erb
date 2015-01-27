@@ -41,15 +41,15 @@
     <div class="sidebar-nav navbar-collapse">
       <ul class="nav in" id="side-menu">
         <li>
-          <a href="#"><%= current_user.email if user_signed_in? %></a>
+          <a href="#"><%= user_signed_in? ? current_user.email : 'Log in first' %></a>
         </li>
         <li>
           <% if user_signed_in? %>
-            <%= link_to '#' do %>
+            <%= link_to feedbacks_path do %>
               <i class="fa fa-table fa-fw"></i> List Feedbacks
             <% end %>
           <% else %>
-            <%= link_to '#' do %>
+            <%= link_to new_feedback_path do %>
               <i class="fa fa-edit fa-fw"></i> Create feedback
             <% end %>
           <% end %>

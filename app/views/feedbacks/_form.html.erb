@@ -1,0 +1,12 @@
+<%= simple_form_for @feedback, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= error_span(@feedback[:name]) %>
+  <%= f.input :email %>
+  <%= error_span(@feedback[:email]) %>
+  <%= f.input :body %>
+  <%= error_span(@feedback[:body]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                feedbacks_path, :class => 'btn btn-default' %>
+<% end %>
