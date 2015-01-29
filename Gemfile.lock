@@ -181,6 +181,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
+  minitest
   mongoid (~> 4.0.0)
   rails (= 4.1.5)
   sass-rails (~> 4.0.3)

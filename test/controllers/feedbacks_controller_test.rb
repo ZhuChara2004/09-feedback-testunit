@@ -2,13 +2,18 @@ require 'test_helper'
 
 class FeedbacksControllerTest < ActionController::TestCase
   setup do
-    @feedback = feedbacks(:one)
+    # @feedback = Feedback.new(name: 'Foo Bar', email: 'foo@bar.com', body: 'Some feedback text here ')
+    @feedback = Feedback.first_or_create(name: 'Foo Bar', email: 'foo@bar.com', body: 'Some feedback text here ')
   end
 
-  test "should get index" do
+  test "unauthorized users should get redirect" do
     get :index
-    assert_response :success
-    assert_not_nil assigns(:feedbacks)
+    assert_response 302
+  end
+
+  test "unathorized users should get redirect on show" do
+    get :show, id: @feedback.id
+    assert_response 302
   end
 
   test "should get new" do
@@ -21,29 +26,24 @@ class FeedbacksControllerTest < ActionController::TestCase
       post :create, feedback: { body: @feedback.body, email: @feedback.email, name: @feedback.name }
     end
 
-    assert_redirected_to feedback_path(assigns(:feedback))
+    assert_redirected_to root_path
   end
 
-  test "should show feedback" do
-    get :show, id: @feedback
-    assert_response :success
-  end
+  # test "should get edit" do
+  #   get :edit, id: @feedback
+  #   assert_response :success
+  # end
 
-  test "should get edit" do
-    get :edit, id: @feedback
-    assert_response :success
-  end
-
-  test "should update feedback" do
-    patch :update, id: @feedback, feedback: { body: @feedback.body, email: @feedback.email, name: @feedback.name }
-    assert_redirected_to feedback_path(assigns(:feedback))
-  end
-
-  test "should destroy feedback" do
-    assert_difference('Feedback.count', -1) do
-      delete :destroy, id: @feedback
-    end
-
-    assert_redirected_to feedbacks_path
-  end
+  # test "should update feedback" do
+  #   patch :update, id: @feedback, feedback: { body: @feedback.body, email: @feedback.email, name: @feedback.name }
+  #   assert_redirected_to feedback_path(assigns(:feedback))
+  # end
+  #
+  # test "should destroy feedback" do
+  #   assert_difference('Feedback.count', -1) do
+  #     delete :destroy, id: @feedback
+  #   end
+  #
+  #   assert_redirected_to feedbacks_path
+  # end
 end

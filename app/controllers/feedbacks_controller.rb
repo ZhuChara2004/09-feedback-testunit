@@ -25,7 +25,8 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     @feedback.save
-    respond_with(@feedback)
+
+    redirect_to root_path
   end
 
   # def update
